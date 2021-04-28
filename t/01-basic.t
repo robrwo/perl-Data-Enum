@@ -29,4 +29,13 @@ is refaddr($red), refaddr( $colors->new("red") ), 'refaddr equality';
 ok my $alt = Class::Enum->new(qw/ green red blue /), 'new class';
 is $alt, $colors, "cached classes";
 
+for my $value (qw/ red green blue /) {
+    is $colors->new($value), $alt->new($value), "same value";
+}
+
+my $sizes = Class::Enum->new(qw/ big small /);
+isnt $sizes, $colors, "different classes";
+
+isnt $sizes->new("small"), $alt->new("blue");
+
 done_testing;
