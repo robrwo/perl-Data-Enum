@@ -77,6 +77,8 @@ sub new {
 
 =head1 SEE ALSO
 
+L<Class::Enum>
+
 L<Object::Enum>
 
 L<Type::Tiny::Enum>
