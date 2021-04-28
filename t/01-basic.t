@@ -38,4 +38,10 @@ isnt $sizes, $colors, "different classes";
 
 isnt $sizes->new("small"), $alt->new("blue");
 
+is $$red, "red", "deref";
+
+$$red = "pink";
+
+is "$red", "red", "unchanged";
+
 done_testing;

@@ -34,7 +34,14 @@ sub new {
         '&new',
         sub {
             my ( $class, $value ) = @_;
-            state $symbols = { map { $_ => bless \$_, "${name}::${_}" } @values };
+            state $symbols = {
+                map {
+                    $_ => do {
+                        Internals::SvREADONLY( my $value = $_ );
+                        bless \$value, "${name}::${value}";
+                    }
+                } @values
+            };
             my $self = $symbols->{$value} or die "invalid value: '$value'";
             return $self;
         }
