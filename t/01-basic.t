@@ -4,9 +4,9 @@ use Scalar::Util qw/ refaddr /;
 
 use_ok("Class::Enum");
 
-ok my $colors = Class::Enum->new( qw/ red green blue / ), 'new class';
+ok my $colors = Class::Enum->new(qw/ red green blue /), 'new class';
 
-ok !eval { $colors->new("pink" ) }, "bad enum caught";
+ok !eval { $colors->new("pink") }, "bad enum caught";
 like $@, qr/invalid value: 'pink'/, "expected error";
 
 ok my $red = $colors->new("red"), "new item";
@@ -22,11 +22,11 @@ is "$red", "red", "stringify";
 ok $red eq "red", "equality";
 ok $red eq $red, "equality";
 ok $colors->new("red") eq $red, "equality";
-ok ! ($colors->new("blue") eq $red), "equality";
+ok !( $colors->new("blue") eq $red ), "equality";
 
-is refaddr($red), refaddr($colors->new("red")), 'refaddr equality';
+is refaddr($red), refaddr( $colors->new("red") ), 'refaddr equality';
 
-ok my $alt = Class::Enum->new( qw/ green red blue / ), 'new class';
+ok my $alt = Class::Enum->new(qw/ green red blue /), 'new class';
 is $alt, $colors, "cached classes";
 
 done_testing;
