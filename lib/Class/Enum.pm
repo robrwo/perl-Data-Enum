@@ -16,7 +16,7 @@ my $Counter;
 sub new {
     my $this = shift;
 
-    my @values = sort @_;
+    my @values = sort map {"$_"} @_;
 
     my $key  = join chr(28), @values;
 
