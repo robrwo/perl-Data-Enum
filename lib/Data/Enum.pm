@@ -10,6 +10,68 @@ use Scalar::Util qw/ blessed refaddr /;
 
 use overload ();
 
+=head1 SYNOPSIS
+
+  use Data::Enum;
+
+  my $color = Data::Enum->new( qw[ red yellow blue green ] );
+
+  my $red = $color->new("red");
+
+  $red->is_red;    # "1"
+  $red->is_yellow; # "" (false)
+  $red->is_blue;   # "" (false)
+  $red->is_green;  # "" (false)
+
+  say $red;        # outputs "red"
+
+  $red eq $color->new("red"); # true
+
+  $red eq "red"; # true
+
+=head1 DESCRIPTION
+
+This module will create enumerated constant classes with the following
+properties:
+
+=over
+
+=item *
+
+Any two classes with the same elements are equivalent.
+
+The following two classes are the I<same>:
+
+  my $one = Data::Enum->new( qw[ foo bar baz ] );
+  my $two = Data::Enum->new( qw[ foo bar baz ] );
+
+=item *
+
+All class instances are singletons.
+
+  my $one = Data::Enum->new( qw[ foo bar baz ] );
+
+  my $a = $one->new("foo")
+  my $b = $one->new("foo");
+
+  refaddr($a) == $refaddr($b); # they are the same thing
+
+=item *
+
+Methods for checking values are fast.
+
+  $a->is_foo; # constant time
+
+  $a eq $b;   # compares refaddr
+
+=back
+
+This is done by creating a unique internal class name based on the
+possible values.  Each value is actually a subclass of that class,
+with the appropriate C<is_> method returning a constant.
+
+=cut
+
 my %Cache;
 my $Counter;
 
