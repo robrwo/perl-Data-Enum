@@ -33,10 +33,11 @@ for my $value (qw/ red green blue /) {
     is $colors->new($value), $alt->new($value), "same value";
 }
 
-my $sizes = Class::Enum->new(qw/ big small /);
+my $sizes = Class::Enum->new(qw/ big small blue /);
 isnt $sizes, $colors, "different classes";
 
-isnt $sizes->new("small"), $alt->new("blue");
+isnt $sizes->new("blue"), $alt->new("blue"), "members of different classes are different";
+isnt $sizes->new("small"), $alt->new("blue"), "members of different classes are different";
 
 is $$red, "red", "deref";
 
