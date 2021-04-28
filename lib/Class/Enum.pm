@@ -56,5 +56,10 @@ sub new {
     return $name;
 }
 
+=head1 SEE ALSO
+
+L<Object::Enum>
+
+=cut
 
 1;
