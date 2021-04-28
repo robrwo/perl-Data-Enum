@@ -19,7 +19,12 @@ sub new {
     my @values = sort @_;
 
     my $key  = join chr(28), @values;
-    my $name = $Cache{ $key } //= ( "Class::Enum::" . $Counter++ );
+
+    if (my $name = $Cache{$key}) {
+        return $name;
+    }
+
+    my $name = "Class::Enum::" . $Counter++;
 
     my $base = Package::Stash->new($name);
 
@@ -49,7 +54,7 @@ sub new {
         );
     }
 
-    return $name;
+    return $Cache{$key} = $name;
 }
 
 =head1 SEE ALSO
