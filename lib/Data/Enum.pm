@@ -64,6 +64,10 @@ Methods for checking values are fast.
 
   $a eq $b;   # compares refaddr
 
+=item *
+
+Values are immutable (read-only).
+
 =back
 
 This is done by creating a unique internal class name based on the
