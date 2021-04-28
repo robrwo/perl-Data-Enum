@@ -1,4 +1,4 @@
-package Class::Enum;
+package Data::Enum;
 
 use v5.10;
 
@@ -26,7 +26,7 @@ sub new {
         return $name;
     }
 
-    my $name = "Class::Enum::" . $Counter++;
+    my $name = "Data::Enum::" . $Counter++;
 
     my $base = Package::Stash->new($name);
 
@@ -78,6 +78,8 @@ sub new {
 =head1 SEE ALSO
 
 L<Object::Enum>
+
+L<Type::Tiny::Enum>
 
 =cut
 
