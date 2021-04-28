@@ -8,6 +8,7 @@ use strict;
 use warnings;
 
 use Package::Stash;
+use List::Util 1.45 qw/ uniqstr /;
 use Scalar::Util qw/ blessed refaddr /;
 
 # RECOMMEND PREREQ: Package::Stash::XS
@@ -103,7 +104,7 @@ my $Counter;
 sub new {
     my $this = shift;
 
-    my @values = sort map { "$_" } @_;
+    my @values = uniqstr( sort map { "$_" } @_ );
 
     die "values must be alphanumeric" if !!grep { /\W/ } @values;
 
