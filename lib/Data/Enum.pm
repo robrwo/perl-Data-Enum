@@ -1,5 +1,7 @@
 package Data::Enum;
 
+# ABSTRACT: fast, immutable enumeration classes
+
 use v5.10;
 
 use strict;
@@ -8,7 +10,11 @@ use warnings;
 use Package::Stash;
 use Scalar::Util qw/ blessed refaddr /;
 
+# RECOMMEND PREREQ: Package::Stash::XS
+
 use overload ();
+
+our $VERSION = 'v0.1.0';
 
 =head1 SYNOPSIS
 
@@ -73,6 +79,21 @@ Values are immutable (read-only).
 This is done by creating a unique internal class name based on the
 possible values.  Each value is actually a subclass of that class,
 with the appropriate C<is_> method returning a constant.
+
+=method new
+
+  my $class = Data::Enum->new( @values );
+
+This creates a new anonymous class. Values can be instantiated with a
+constructor:
+
+  my $instance = $class->new( $value );
+
+Calling the constructor with an invalid value will throw an exception.
+
+Each instance will have an C<is_> method for each value.
+
+Each instance stringifies to its value.
 
 =cut
 
