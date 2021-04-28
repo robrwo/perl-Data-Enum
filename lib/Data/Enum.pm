@@ -104,7 +104,7 @@ sub new {
                     }
                 } @values
             };
-            my $self = $symbols->{$value} or die "invalid value: '$value'";
+            my $self = $symbols->{"$value"} or die "invalid value: '$value'";
             return $self;
         }
     );

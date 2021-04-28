@@ -25,6 +25,9 @@ ok $red eq "red", "equality";
 ok $red eq $red, "equality";
 ok $colors->new("red") eq $red, "equality";
 
+ok my $ro = $colors->new($red), "implicit clone";
+is $ro, $red, "equality";
+
 my $blue = $colors->new("blue");
 
 ok !( $colors->new("blue") eq $red ), "equality";
