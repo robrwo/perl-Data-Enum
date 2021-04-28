@@ -56,6 +56,12 @@ sub new {
                   ? refaddr($value) == refaddr($self)
                   : $value eq $$self;
             },
+            q{ne} => sub {
+                my ( $self, $value ) = @_;
+                return blessed($value)
+                  ? refaddr($value) != refaddr($self)
+                  : $value ne $$self;
+            },
         );
     }
 
