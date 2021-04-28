@@ -18,6 +18,8 @@ sub new {
 
     my @values = sort map {"$_"} @_;
 
+    die "values must be alphanumeric" if !!grep { /\W/ } @values;
+
     my $key  = join chr(28), @values;
 
     if (my $name = $Cache{$key}) {
