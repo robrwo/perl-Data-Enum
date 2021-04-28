@@ -16,13 +16,23 @@ isa_ok $red, $colors;
 can_ok( $red, qw/ is_red is_green is_blue / );
 
 ok $red->is_red, 'is_red';
+ok !$red->is_blue, '!is_blue';
+ok !$red->is_green, '!is_green';
 
 is "$red", "red", "stringify";
 
 ok $red eq "red", "equality";
 ok $red eq $red, "equality";
 ok $colors->new("red") eq $red, "equality";
+
+my $blue = $colors->new("blue");
+
 ok !( $colors->new("blue") eq $red ), "equality";
+ok $colors->new("blue") eq $blue, "equality";
+
+ok !$blue->is_red, '!is_red';
+ok $blue->is_blue, 'is_blue';
+ok !$blue->is_green, '!is_green';
 
 is refaddr($red), refaddr( $colors->new("red") ), 'refaddr equality';
 
