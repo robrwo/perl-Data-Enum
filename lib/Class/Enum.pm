@@ -38,18 +38,14 @@ sub new {
         $subtype->add_symbol( '@ISA', [$name] );
         $subtype->add_symbol( $method, sub { 1 } );
 
-        $subtype->add_symbol( '&__string', sub { $value } );
-
-        $subtype->add_symbol( '&__eq', sub {
-            my ($self, $value) = @_;
-            return blessed($value)
-                ? ref($value) eq $elem
-                : $value eq $$self;
-        });
-
         $elem->overload::OVERLOAD(
-            q{""} => '__string',
-            q{eq} => '__eq',
+            q{""} => sub { $value },
+            q{eq} => sub {
+                my ($self, $value) = @_;
+                return blessed($value)
+                    ? ref($value) eq $elem
+                    : $value eq $$self;
+            },
         );
     }
 
