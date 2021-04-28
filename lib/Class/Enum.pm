@@ -6,7 +6,7 @@ use strict;
 use warnings;
 
 use Package::Stash;
-use Scalar::Util qw/ blessed /;
+use Scalar::Util qw/ blessed refaddr /;
 
 use overload ();
 
@@ -43,7 +43,7 @@ sub new {
             q{eq} => sub {
                 my ($self, $value) = @_;
                 return blessed($value)
-                    ? ref($value) eq $elem
+                    ? refaddr($value) == refaddr($self)
                     : $value eq $$self;
             },
         );
