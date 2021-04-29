@@ -105,6 +105,20 @@ removed.
 
 This was added in v0.2.0.
 
+=method predicates
+
+  my @predicates = $class->predicates;
+
+Returns a list of predicate methods for each value.
+
+A hash of predicates to values is roughly
+
+  use List::Util 1.56 'mesh';
+
+  my %handlers = mesh [ $class->values ], [ $class->predicates ];
+
+This was added in v0.2.1.
+
 =cut
 
 my %Cache;
@@ -134,6 +148,11 @@ sub new {
         return $self;
     };
 
+    my $_make_predicate = sub {
+        my ($value) = @_;
+        return "is_" . $value;
+    };
+
     $base->add_symbol(
         '&new',
         sub {
@@ -149,6 +168,8 @@ sub new {
     );
 
     $base->add_symbol( '&values', sub { return @values });
+
+    $base->add_symbol( '&predicates', sub { return map { $_make_predicate->($_) } @values } );
 
     $name->overload::OVERLOAD(
         q{""} => sub { my ($self) = @_; return $$self; },
@@ -167,12 +188,12 @@ sub new {
     );
 
     for my $value (@values) {
-        my $method = '&is_' . $value;
-        $base->add_symbol( $method, sub { '' } );
+        my $predicate = $_make_predicate->($value);
+        $base->add_symbol( '&' . $predicate, sub { '' } );
         my $elem    = "${name}::${value}";
         my $subtype = Package::Stash->new($elem);
         $subtype->add_symbol( '@ISA',  [$name] );
-        $subtype->add_symbol( $method, sub { 1 } );
+        $subtype->add_symbol( '&' . $predicate, sub { 1 } );
     }
 
     return $Cache{$key} = $name;
