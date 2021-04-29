@@ -6,14 +6,18 @@ use_ok("Data::Enum");
 
 ok my $colors = Data::Enum->new(qw/ red green blue /), 'new class';
 
+is_deeply [ $colors->values ], [qw/ blue green red /], 'values';
+
 ok !eval { $colors->new("pink") }, "bad enum caught";
 like $@, qr/invalid value: 'pink'/, "expected error";
 
 ok my $red = $colors->new("red"), "new item";
 
+is_deeply [ $red->values ], [qw/ blue green red /], 'values';
+
 isa_ok $red, $colors;
 
-can_ok( $red, qw/ is_red is_green is_blue / );
+can_ok( $red, qw/ values is_red is_green is_blue / );
 
 ok $red->is_red, 'is_red';
 ok !$red->is_blue, '!is_blue';

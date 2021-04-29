@@ -1,6 +1,8 @@
 Revision history for {{ $dist->name }}:
 
 {{$NEXT}}
+ [Enhancements]
+ - Add `values` method.
 
 v0.1.1    2021-04-29 09:21:48+01:00 Europe/London
  [Bug Fixes]

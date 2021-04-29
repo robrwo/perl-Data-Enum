@@ -96,6 +96,13 @@ Each instance will have an C<is_> method for each value.
 
 Each instance stringifies to its value.
 
+=method values
+
+  my @values = $class->values;
+
+Returns a list of valid values, stringified and sorted with duplicates
+removed.
+
 =cut
 
 my %Cache;
@@ -134,6 +141,8 @@ sub new {
             return $self;
         }
     );
+
+    $base->add_symbol( '&values', sub { return @values });
 
     for my $value (@values) {
         my $method = '&is_' . $value;
