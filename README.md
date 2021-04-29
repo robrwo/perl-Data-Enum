@@ -104,6 +104,10 @@ This was added in v0.2.0.
 
 [Object::Enum](https://metacpan.org/pod/Object::Enum)
 
+[MooX::Enumeration](https://metacpan.org/pod/MooX::Enumeration)
+
+[MooseX::Enumeration](https://metacpan.org/pod/MooseX::Enumeration)
+
 [Type::Tiny::Enum](https://metacpan.org/pod/Type::Tiny::Enum)
 
 # SOURCE
