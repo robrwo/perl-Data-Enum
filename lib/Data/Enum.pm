@@ -125,7 +125,7 @@ sub new {
             state $symbols = {
                 map {
                     $_ => do {
-                        Internals::SvREADONLY( my $value = $_ );
+                        my $value = $_;
                         bless \$value, "${name}::${value}";
                     }
                 } @values
