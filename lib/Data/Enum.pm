@@ -146,16 +146,16 @@ sub new {
         $elem->overload::OVERLOAD(
             q{""} => sub { $value },
             q{eq} => sub {
-                my ( $self, $value ) = @_;
-                return blessed($value)
-                  ? refaddr($value) == refaddr($self)
-                  : $value eq $$self;
+                my ( $self, $arg ) = @_;
+                return blessed($arg)
+                  ? refaddr($arg) == refaddr($self)
+                  : $arg eq $value;
             },
             q{ne} => sub {
-                my ( $self, $value ) = @_;
-                return blessed($value)
-                  ? refaddr($value) != refaddr($self)
-                  : $value ne $$self;
+                my ( $self, $arg ) = @_;
+                return blessed($arg)
+                  ? refaddr($arg) != refaddr($self)
+                  : $arg ne $value;
             },
         );
     }
