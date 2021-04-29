@@ -103,6 +103,8 @@ Each instance stringifies to its value.
 Returns a list of valid values, stringified and sorted with duplicates
 removed.
 
+This was added in v0.2.0.
+
 =cut
 
 my %Cache;
