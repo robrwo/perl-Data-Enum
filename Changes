@@ -11,6 +11,8 @@ Revision history for {{ $dist->name }}:
  [Bug Fixes]
  - The values are genuinely read only.
 
+ - "0" is accepted as a value.
+
  [Documentation]
  - Add more Enum-style modules to the SEE ALSO section.
 

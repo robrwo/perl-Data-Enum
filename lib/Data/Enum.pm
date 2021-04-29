@@ -143,8 +143,8 @@ sub new {
                     $_ => $_make_symbol->($_)
                 } @values
             };
-            my $self = $symbols->{"$value"} or die "invalid value: '$value'";
-            return $self;
+            exists $symbols->{"$value"} or die "invalid value: '$value'";
+            return $symbols->{"$value"};
         }
     );
 
