@@ -87,6 +87,17 @@ Each instance will have an `is_` method for each value.
 
 Each instance stringifies to its value.
 
+## values
+
+```perl
+my @values = $class->values;
+```
+
+Returns a list of valid values, stringified and sorted with duplicates
+removed.
+
+This was added in v0.2.0.
+
 # SEE ALSO
 
 [Class::Enum](https://metacpan.org/pod/Class::Enum)
