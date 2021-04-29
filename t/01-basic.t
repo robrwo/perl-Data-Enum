@@ -58,7 +58,8 @@ isnt $sizes->new("small"), $alt->new("blue"), "members of different classes are 
 
 is $$red, "red", "deref";
 
-$$red = "pink";
+ok !eval { $$red = "pink" }, 'changing value failed';
+like $@, qr/Modification of a read-only value attempted/, "error when changing value";
 
 is "$red", "red", "unchanged";
 

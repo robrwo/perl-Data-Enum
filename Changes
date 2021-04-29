@@ -4,6 +4,13 @@ Revision history for {{ $dist->name }}:
  [Enhancements]
  - Add `values` method.
 
+ - Moved overloaded methods to parent classes (removes slight
+   performance improvement from v0.1.1, but should reduce memory
+   footprint).
+
+ [Bug Fixes]
+ - The values are genuinely read only.
+
 v0.1.1    2021-04-29 09:21:48+01:00 Europe/London
  [Bug Fixes]
  - Remove unnecessary call to SvREADONLY.

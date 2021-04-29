@@ -125,16 +125,20 @@ sub new {
 
     my $base = Package::Stash->new($name);
 
+    my $_make_symbol = sub {
+        my ($value) = @_;
+        my $self = bless \$value, "${name}::${value}";
+        Internals::SvREADONLY($value, 1);
+        return $self;
+    };
+
     $base->add_symbol(
         '&new',
         sub {
             my ( $class, $value ) = @_;
             state $symbols = {
                 map {
-                    $_ => do {
-                        my $value = $_;
-                        bless \$value, "${name}::${value}";
-                    }
+                    $_ => $_make_symbol->($_)
                 } @values
             };
             my $self = $symbols->{"$value"} or die "invalid value: '$value'";
@@ -144,6 +148,22 @@ sub new {
 
     $base->add_symbol( '&values', sub { return @values });
 
+    $name->overload::OVERLOAD(
+        q{""} => sub { my ($self) = @_; return $$self; },
+        q{eq} => sub {
+            my ( $self, $arg ) = @_;
+            return blessed($arg)
+              ? refaddr($arg) == refaddr($self)
+              : $arg eq $$self;
+        },
+        q{ne} => sub {
+            my ( $self, $arg ) = @_;
+            return blessed($arg)
+              ? refaddr($arg) != refaddr($self)
+              : $arg ne $$self;
+        },
+    );
+
     for my $value (@values) {
         my $method = '&is_' . $value;
         $base->add_symbol( $method, sub { '' } );
@@ -151,22 +171,6 @@ sub new {
         my $subtype = Package::Stash->new($elem);
         $subtype->add_symbol( '@ISA',  [$name] );
         $subtype->add_symbol( $method, sub { 1 } );
-
-        $elem->overload::OVERLOAD(
-            q{""} => sub { $value },
-            q{eq} => sub {
-                my ( $self, $arg ) = @_;
-                return blessed($arg)
-                  ? refaddr($arg) == refaddr($self)
-                  : $arg eq $value;
-            },
-            q{ne} => sub {
-                my ( $self, $arg ) = @_;
-                return blessed($arg)
-                  ? refaddr($arg) != refaddr($self)
-                  : $arg ne $value;
-            },
-        );
     }
 
     return $Cache{$key} = $name;
