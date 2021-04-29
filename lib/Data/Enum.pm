@@ -184,6 +184,10 @@ L<Class::Enum>
 
 L<Object::Enum>
 
+L<MooX::Enumeration>
+
+L<MooseX::Enumeration>
+
 L<Type::Tiny::Enum>
 
 =cut

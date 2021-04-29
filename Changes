@@ -11,6 +11,9 @@ Revision history for {{ $dist->name }}:
  [Bug Fixes]
  - The values are genuinely read only.
 
+ [Documentation]
+ - Add more Enum-style modules to the SEE ALSO section.
+
 v0.1.1    2021-04-29 09:21:48+01:00 Europe/London
  [Bug Fixes]
  - Remove unnecessary call to SvREADONLY.
