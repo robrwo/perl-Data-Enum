@@ -61,7 +61,7 @@ All class instances are singletons.
   my $a = $one->new("foo")
   my $b = $one->new("foo");
 
-  refaddr($a) == $refaddr($b); # they are the same thing
+  refaddr($a) == refaddr($b); # they are the same thing
 
 =item *
 
