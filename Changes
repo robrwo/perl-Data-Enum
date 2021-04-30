@@ -1,6 +1,8 @@
 Revision history for {{ $dist->name }}:
 
 {{$NEXT}}
+
+v0.2.1    2021-04-30 11:26:32+01:00 Europe/London
  [Enhancements]
  - Add `predicates` method.
 
