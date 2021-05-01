@@ -4,6 +4,10 @@ use Scalar::Util qw/ refaddr /;
 
 use_ok("Data::Enum");
 
+throws_ok {
+    Data::Enum->new(qw/ yes no! /);
+} qr/values must be alphanumeric/, "invalid values";
+
 ok my $colors = Data::Enum->new(qw/ red green blue /), 'new class';
 
 is_deeply [ $colors->values ], [qw/ blue green red /], 'values';
