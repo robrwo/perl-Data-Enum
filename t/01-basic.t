@@ -1,4 +1,4 @@
-use Test::More;
+use Test::Most;
 
 use Scalar::Util qw/ refaddr /;
 
@@ -8,8 +8,9 @@ ok my $colors = Data::Enum->new(qw/ red green blue /), 'new class';
 
 is_deeply [ $colors->values ], [qw/ blue green red /], 'values';
 
-ok !eval { $colors->new("pink") }, "bad enum caught";
-like $@, qr/invalid value: 'pink'/, "expected error";
+throws_ok {
+ $colors->new("pink")
+} qr/invalid value: 'pink'/;
 
 ok my $red = $colors->new("red"), "new item";
 
@@ -60,8 +61,9 @@ isnt $sizes->new("small"), $alt->new("blue"), "members of different classes are 
 
 is $$red, "red", "deref";
 
-ok !eval { $$red = "pink" }, 'changing value failed';
-like $@, qr/Modification of a read-only value attempted/, "error when changing value";
+throws_ok {
+ $$red = "pink"
+} qr/Modification of a read-only value attempted/, "error when changing value";
 
 is "$red", "red", "unchanged";
 
