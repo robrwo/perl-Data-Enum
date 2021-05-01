@@ -1,6 +1,9 @@
 Revision history for {{ $dist->name }}:
 
 {{$NEXT}}
+ [Bug Fixes]
+ - Constructor now fails if there are no values.
+
  [Tests]
  - Changed tests to use Test::Most with Test::Exception.
 

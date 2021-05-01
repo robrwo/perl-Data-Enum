@@ -5,6 +5,10 @@ use Scalar::Util qw/ refaddr /;
 use_ok("Data::Enum");
 
 throws_ok {
+    Data::Enum->new;
+} qr/has no values/, "no values";
+
+throws_ok {
     Data::Enum->new(qw/ yes no! /);
 } qr/values must be alphanumeric/, "invalid values";
 

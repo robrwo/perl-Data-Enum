@@ -129,6 +129,8 @@ sub new {
 
     my @values = uniqstr( sort map { "$_" } @_ );
 
+    die "has no values" unless @values;
+
     die "values must be alphanumeric" if !!grep { /\W/ } @values;
 
     my $key = join chr(28), @values;
