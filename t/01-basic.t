@@ -39,11 +39,18 @@ is "$red", "red", "stringify";
 ok $red eq "red", "equality";
 ok $red eq $red, "equality";
 ok $colors->new("red") eq $red, "equality";
+ok "red" eq $red, "equality";
 
 ok my $ro = $colors->new($red), "implicit clone";
 is $ro, $red, "equality";
 
 my $blue = $colors->new("blue");
+
+ok $red ne "blue", "inequality";
+ok $red ne "bllue", "inequality";
+ok $red ne $blue, "inequality";
+ok $colors->new("green") ne $red, "inequality";
+ok "blue" ne $red, "inequality";
 
 ok !( $colors->new("blue") eq $red ), "equality";
 ok $colors->new("blue") eq $blue, "equality";
