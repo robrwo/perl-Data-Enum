@@ -1,6 +1,9 @@
 Revision history for {{ $dist->name }}:
 
 {{$NEXT}}
+ [Documentation]
+ - Bumped copyright year.
+
  [Other]
  - Update MANIFEST.SKIP, removing bad rule.
 
