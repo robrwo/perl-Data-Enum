@@ -4,7 +4,7 @@ Data::Enum - fast, immutable enumeration classes
 
 # VERSION
 
-version v0.2.2
+version v0.2.3
 
 # SYNOPSIS
 
