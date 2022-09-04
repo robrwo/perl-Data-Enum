@@ -4,6 +4,8 @@ Revision history for {{ $dist->name }}:
  [Documentation]
  - Bumped copyright year.
 
+ - Fixed encoding on links in README.
+
  [Other]
  - Update MANIFEST.SKIP, removing bad rule.
 
