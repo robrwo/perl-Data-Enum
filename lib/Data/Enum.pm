@@ -15,7 +15,7 @@ use Scalar::Util qw/ blessed refaddr /;
 
 use overload ();
 
-our $VERSION = 'v0.2.4';
+our $VERSION = 'v0.2.5';
 
 =head1 SYNOPSIS
 

@@ -1,6 +1,8 @@
 Revision history for {{ $dist->name }}:
 
 {{$NEXT}}
+
+v0.2.4    2022-09-20 18:27:04+01:00 Europe/London
  [Documentation]
  - Added CAVEAT about performance.
 
