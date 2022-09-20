@@ -8,7 +8,7 @@ use strict;
 use warnings;
 
 use Package::Stash;
-use List::Util 1.45 qw/ uniqstr /;
+use List::Util 1.45 qw/ any uniqstr /;
 use Scalar::Util qw/ blessed refaddr /;
 
 # RECOMMEND PREREQ: Package::Stash::XS
@@ -131,7 +131,7 @@ sub new {
 
     die "has no values" unless @values;
 
-    die "values must be alphanumeric" if !!grep { /\W/ } @values;
+    die "values must be alphanumeric" if any{ /\W/ } @values;
 
     my $key = join chr(28), @values;
 
