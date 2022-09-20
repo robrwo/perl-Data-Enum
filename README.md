@@ -4,7 +4,7 @@ Data::Enum - immutable enumeration classes
 
 # VERSION
 
-version v0.2.4
+version v0.2.5
 
 # SYNOPSIS
 
