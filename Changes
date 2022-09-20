@@ -1,6 +1,10 @@
 Revision history for {{ $dist->name }}:
 
 {{$NEXT}}
+ [Documentation]
+ - Added CAVEAT about performance.
+
+ - Removed "fast" from the ABSTRACT, since it's not necessarily fast.
 
 v0.2.3    2022-09-04 16:07:55+01:00 Europe/London
  [Documentation]

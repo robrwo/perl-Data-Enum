@@ -1,6 +1,6 @@
 package Data::Enum;
 
-# ABSTRACT: fast, immutable enumeration classes
+# ABSTRACT: immutable enumeration classes
 
 use v5.10;
 
@@ -200,6 +200,11 @@ sub new {
 
     return $Cache{$key} = $name;
 }
+
+=head1 CAVEATS
+
+The overheard of creating a new class instance and resolving methods may actually take more time than comparing simple
+strings.  When using this in production code, you may want to benchmark performance.
 
 =head1 SEE ALSO
 
