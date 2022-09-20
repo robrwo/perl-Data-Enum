@@ -191,11 +191,11 @@ sub new {
 
     for my $value (@values) {
         my $predicate = $_make_predicate->($value);
-        $base->add_symbol( '&' . $predicate, sub { '' } );
+        $base->add_symbol( '&' . $predicate, sub() { '' } );
         my $elem    = "${name}::${value}";
         my $subtype = Package::Stash->new($elem);
         $subtype->add_symbol( '@ISA',  [$name] );
-        $subtype->add_symbol( '&' . $predicate, sub { 1 } );
+        $subtype->add_symbol( '&' . $predicate, sub() { 1 } );
     }
 
     return $Cache{$key} = $name;
