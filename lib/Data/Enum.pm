@@ -15,6 +15,9 @@ use Scalar::Util qw/ blessed refaddr /;
 
 use overload ();
 
+use constant TRUE  => 1;
+use constant FALSE => 0;
+
 our $VERSION = 'v0.2.6';
 
 =head1 SYNOPSIS
@@ -193,11 +196,11 @@ sub new {
 
     for my $value (@values) {
         my $predicate = $_make_predicate->($value);
-        $base->add_symbol( '&' . $predicate, sub() { '' } );
+        $base->add_symbol( '&' . $predicate, \&FALSE );
         my $elem    = "${name}::${value}";
         my $subtype = Package::Stash->new($elem);
         $subtype->add_symbol( '@ISA',  [$name] );
-        $subtype->add_symbol( '&' . $predicate, sub() { 1 } );
+        $subtype->add_symbol( '&' . $predicate, \&TRUE );
     }
 
     return $Cache{$key} = $name;

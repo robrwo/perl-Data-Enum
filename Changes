@@ -1,6 +1,8 @@
 Revision history for {{ $dist->name }}:
 
 {{$NEXT}}
+ [Enhancements]
+  - Minor code improvements.
 
 v0.2.5    2022-09-21 16:19:29+01:00 Europe/London
  [Enhancements]
