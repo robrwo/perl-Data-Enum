@@ -121,8 +121,6 @@ This was added in v0.2.1.
 
 =cut
 
-my %Cache;
-my $Counter;
 
 sub new {
     my $this = shift;
@@ -134,6 +132,10 @@ sub new {
     die "values must be alphanumeric" if any{ /\W/ } @values;
 
     my $key = join chr(28), @values;
+
+    state %Cache;
+    state $Counter = 1;
+
 
     if ( my $name = $Cache{$key} ) {
         return $name;
