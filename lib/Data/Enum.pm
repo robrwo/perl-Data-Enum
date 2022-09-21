@@ -122,6 +122,10 @@ A hash of predicates to values is roughly
 
 This was added in v0.2.1.
 
+=method MATCH
+
+This method adds support for L<match::simple>.
+
 =cut
 
 
@@ -178,14 +182,18 @@ sub new {
 
     $base->add_symbol( '&predicates', sub { return map { $_make_predicate->($_) } @values } );
 
+    my $match = sub {
+        my ( $self, $arg ) = @_;
+        return blessed($arg)
+            ? refaddr($arg) == refaddr($self)
+            : $arg eq $$self;
+    };
+
+    $base->add_symbol( '&MATCH', $match );
+
     $name->overload::OVERLOAD(
         q{""} => sub { my ($self) = @_; return $$self; },
-        q{eq} => sub {
-            my ( $self, $arg ) = @_;
-            return blessed($arg)
-              ? refaddr($arg) == refaddr($self)
-              : $arg eq $$self;
-        },
+        q{eq} => $match,
         q{ne} => sub {
             my ( $self, $arg ) = @_;
             return blessed($arg)

@@ -116,6 +116,10 @@ my %handlers = mesh [ $class->values ], [ $class->predicates ];
 
 This was added in v0.2.1.
 
+## MATCH
+
+This method adds support for [match::simple](https://metacpan.org/pod/match%3A%3Asimple).
+
 # CAVEATS
 
 The overheard of creating a new class instance and resolving methods may actually take more time than comparing simple

@@ -2,6 +2,8 @@ Revision history for {{ $dist->name }}:
 
 {{$NEXT}}
  [Enhancements]
+  - Add MATCH method to support use with match::simple.
+
   - Minor code improvements.
 
 v0.2.5    2022-09-21 16:19:29+01:00 Europe/London
