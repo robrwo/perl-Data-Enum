@@ -20,6 +20,10 @@ use constant FALSE => 0;
 
 our $VERSION = 'v0.2.6';
 
+=for Pod::Coverage TRUE
+
+=for Pod::Coverage FALSE
+
 =head1 SYNOPSIS
 
   use Data::Enum;
