@@ -223,6 +223,12 @@ sub new {
 The overheard of creating a new class instance and resolving methods may actually take more time than comparing simple
 strings.  When using this in production code, you may want to benchmark performance.
 
+=head1 SUPPORT FOR OLDER PERL VERSIONS
+
+This module requires Perl v5.10 or later.
+
+Future releases may only support Perl versions released in the last ten years.
+
 =head1 SEE ALSO
 
 L<Class::Enum>
