@@ -6,8 +6,7 @@ requires "Package::Stash" => "0";
 requires "Scalar::Util" => "0";
 requires "constant" => "0";
 requires "overload" => "0";
-requires "perl" => "v5.10.0";
-requires "strict" => "0";
+requires "perl" => "v5.14.0";
 requires "warnings" => "0";
 recommends "Package::Stash::XS" => "0";
 
@@ -16,6 +15,7 @@ on 'test' => sub {
   requires "Module::Metadata" => "0";
   requires "Test::More" => "0";
   requires "Test::Most" => "0";
+  requires "strict" => "0";
 };
 
 on 'test' => sub {

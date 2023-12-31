@@ -2,9 +2,7 @@ package Data::Enum;
 
 # ABSTRACT: immutable enumeration classes
 
-use v5.10;
-
-use strict;
+use v5.14;
 use warnings;
 
 use Package::Stash;
@@ -18,7 +16,7 @@ use overload ();
 use constant TRUE  => 1;
 use constant FALSE => 0;
 
-our $VERSION = 'v0.2.8';
+our $VERSION = 'v0.3.0';
 
 =for Pod::Coverage TRUE
 
@@ -225,7 +223,7 @@ strings.  When using this in production code, you may want to benchmark performa
 
 =head1 SUPPORT FOR OLDER PERL VERSIONS
 
-This module requires Perl v5.10 or later.
+This module requires Perl v5.14 or later.
 
 Future releases may only support Perl versions released in the last ten years.
 
