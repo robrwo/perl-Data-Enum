@@ -64,7 +64,7 @@ properties:
 
 This is done by creating a unique internal class name based on the
 possible values.  Each value is actually a subclass of that class,
-with the appropriate `is_` method returning a constant.
+with the appropriate predicate method returning a constant.
 
 # METHODS
 
@@ -87,7 +87,7 @@ Each instance will have an `is_` method for each value.
 
 Each instance stringifies to its value.
 
-Since v0.3.0 you can change the method prefix to something other than `is_`. For example,
+Since v0.3.0 you can change the method prefix of the predicate methods to something other than `is_`. For example,
 
 ```perl
 my $class = Data::Enum->new( { prefix => "from_" }, "home", "work" );

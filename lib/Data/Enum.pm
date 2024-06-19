@@ -84,7 +84,7 @@ Values are immutable (read-only).
 
 This is done by creating a unique internal class name based on the
 possible values.  Each value is actually a subclass of that class,
-with the appropriate C<is_> method returning a constant.
+with the appropriate predicate method returning a constant.
 
 =method new
 
@@ -101,7 +101,7 @@ Each instance will have an C<is_> method for each value.
 
 Each instance stringifies to its value.
 
-Since v0.3.0 you can change the method prefix to something other than C<is_>. For example,
+Since v0.3.0 you can change the method prefix of the predicate methods to something other than C<is_>. For example,
 
   my $class = Data::Enum->new( { prefix => "from_" }, "home", "work" );
   my $place = $class->new("work");

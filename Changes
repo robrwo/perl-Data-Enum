@@ -4,6 +4,8 @@ Revision history for {{ $dist->name }}:
   [Documentation]
   - Emphasised that value order does not matter in the SYNOPSIS.
 
+  - Adjusted the wording related to the new predicate prefix option.
+
 v0.3.0    2024-06-19 17:31:12+01:00 Europe/London
   [Enhancements]
   - Added the "prefix" constructor option and method.
