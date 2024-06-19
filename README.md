@@ -87,6 +87,15 @@ Each instance will have an `is_` method for each value.
 
 Each instance stringifies to its value.
 
+Since v0.3.0 you can change the method prefix to something other than `is_`. For example,
+
+```perl
+my $class = Data::Enum->new( { prefix => "from_" }, "home", "work" );
+my $place = $class->new("work");
+
+$place->from_home;
+```
+
 ## values
 
 ```perl
@@ -115,6 +124,12 @@ my %handlers = mesh [ $class->values ], [ $class->predicates ];
 ```
 
 This was added in v0.2.1.
+
+## prefix
+
+This returns the prefix.
+
+This was added in v0.3.0.
 
 ## MATCH
 
