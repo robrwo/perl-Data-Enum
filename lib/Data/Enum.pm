@@ -131,6 +131,12 @@ A hash of predicates to values is roughly
 
 This was added in v0.2.1.
 
+=method prefix
+
+This returns the prefix.
+
+This was added in v0.3.0.
+
 =method MATCH
 
 This method adds support for L<match::simple>.
@@ -193,6 +199,8 @@ sub new {
     $base->add_symbol( '&values', sub { return @values });
 
     $base->add_symbol( '&predicates', sub { return map { $_make_predicate->($_) } @values } );
+
+    $base->add_symbol( '&prefix', sub { $prefix });
 
     my $match = sub {
         my ( $self, $arg ) = @_;
