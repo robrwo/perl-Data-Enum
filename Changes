@@ -1,6 +1,9 @@
 Revision history for {{ $dist->name }}:
 
 {{$NEXT}}
+  [Enhancements]
+  - Added the "prefix" constructor option.
+
   [Incompatible Changes]
   - Bumped minimum version of Perl to v5.14.
 

@@ -101,6 +101,13 @@ Each instance will have an C<is_> method for each value.
 
 Each instance stringifies to its value.
 
+Since v0.3.0 you can change the method prefix to something other than C<is_>. For example,
+
+  my $class = Data::Enum->new( { prefix => "from_" }, "home", "work" );
+  my $place = $class->new("work");
+
+  $place->from_home;
+
 =method values
 
   my @values = $class->values;
@@ -134,6 +141,9 @@ This method adds support for L<match::simple>.
 sub new {
     my $this = shift;
 
+    my $opts = ref( $_[0] ) eq "HASH" ? shift : {};
+    my $prefix = $opts->{prefix} // "is_";
+
     my @values = uniqstr( sort map { "$_" } @_ );
 
     die "has no values" unless @values;
@@ -163,7 +173,7 @@ sub new {
 
     my $_make_predicate = sub {
         my ($value) = @_;
-        return "is_" . $value;
+        return $prefix . $value;
     };
 
     $base->add_symbol(
