@@ -6,6 +6,9 @@ Revision history for {{ $dist->name }}:
 
   - Adjusted the wording related to the new predicate prefix option.
 
+  [Other]
+  - Added a benchmark script for development.
+
 v0.3.0    2024-06-19 17:31:12+01:00 Europe/London
   [Enhancements]
   - Added the "prefix" constructor option and method.
