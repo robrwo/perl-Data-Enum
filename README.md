@@ -38,7 +38,7 @@ properties:
 
     ```perl
     my $one = Data::Enum->new( qw[ foo bar baz ] );
-    my $two = Data::Enum->new( qw[ foo bar baz ] );
+    my $two = Data::Enum->new( qw[ baz bar foo ] );
     ```
 
 - All class instances are singletons.

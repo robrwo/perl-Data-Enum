@@ -55,7 +55,7 @@ Any two classes with the same elements are equivalent.
 The following two classes are the I<same>:
 
   my $one = Data::Enum->new( qw[ foo bar baz ] );
-  my $two = Data::Enum->new( qw[ foo bar baz ] );
+  my $two = Data::Enum->new( qw[ baz bar foo ] );
 
 =item *
 
