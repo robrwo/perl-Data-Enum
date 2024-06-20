@@ -4,6 +4,8 @@ Revision history for {{ $dist->name }}:
   [Enhancements]
   - Use a shared method for MATCH.
 
+  - All instances of classes have Data::Enum as a parent.
+
   - Internal code improvements.
 
   [Documentation]

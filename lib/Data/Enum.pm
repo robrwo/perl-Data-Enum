@@ -220,7 +220,7 @@ sub new {
         $base->add_symbol( '&' . $predicate, \&FALSE );
         my $elem    = "${name}::${value}";
         my $subtype = Package::Stash->new($elem);
-        $subtype->add_symbol( '@ISA',  [$name] );
+        $subtype->add_symbol( '@ISA',  [ __PACKAGE__, $name] );
         $subtype->add_symbol( '&' . $predicate, \&TRUE );
     }
 
