@@ -39,6 +39,7 @@ ok !$red->is_green, '!is_green';
 is $red->is_blue, 0, "!is_blue (false == 0)";
 
 is "$red", "red", "stringify";
+is $red->as_string, "red", "as_string";
 
 ok $red eq "red", "equality";
 ok $red eq $red, "equality";
