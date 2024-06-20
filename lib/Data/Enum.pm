@@ -11,7 +11,10 @@ use Scalar::Util qw/ blessed refaddr /;
 
 # RECOMMEND PREREQ: Package::Stash::XS
 
-use overload ();
+use overload
+  q{""} => \&as_string,
+  q{eq} => \&MATCH,
+  q{ne} => \&_NOT_MATCH;
 
 use constant TRUE  => 1;
 use constant FALSE => 0;
@@ -196,12 +199,6 @@ sub new {
     $base->add_symbol( '&predicates', sub { return map { $_make_predicate->($_) } @values } );
 
     $base->add_symbol( '&prefix', sub { $prefix });
-
-    $name->overload::OVERLOAD(
-        q{""} => \&as_string,
-        q{eq} => \&MATCH,
-        q{ne} => \&_NOT_MATCH,
-    );
 
     for my $value (@values) {
         my $predicate = $_make_predicate->($value);
