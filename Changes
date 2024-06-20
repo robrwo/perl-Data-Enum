@@ -4,6 +4,8 @@ Revision history for {{ $dist->name }}:
   [Enhancements]
   - Use a shared method for MATCH.
 
+  - Internal code improvements.
+
   [Documentation]
   - Emphasised that value order does not matter in the SYNOPSIS.
 

@@ -166,7 +166,7 @@ sub new {
         return $name;
     }
 
-    my $name = "Data::Enum::" . $Counter++;
+    my $name = __PACKAGE__ . "::" . $Counter++;
 
     my $base = Package::Stash->new($name);
 
