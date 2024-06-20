@@ -238,6 +238,8 @@ sub MATCH {
 
 This stringifies the the object.
 
+This was added in v0.4.0.
+
 =cut
 
 sub as_string {
