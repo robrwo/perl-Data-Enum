@@ -202,18 +202,11 @@ sub new {
 
     $base->add_symbol( '&prefix', sub { $prefix });
 
-    my $match = sub {
-        my ( $self, $arg ) = @_;
-        return blessed($arg)
-            ? refaddr($arg) == refaddr($self)
-            : $arg eq $$self;
-    };
-
-    $base->add_symbol( '&MATCH', $match );
+    $base->add_symbol( '&MATCH', \&__match );
 
     $name->overload::OVERLOAD(
         q{""} => sub { my ($self) = @_; return $$self; },
-        q{eq} => $match,
+        q{eq} => \&__match,
         q{ne} => sub {
             my ( $self, $arg ) = @_;
             return blessed($arg)
@@ -232,6 +225,13 @@ sub new {
     }
 
     return $Cache{$key} = $name;
+}
+
+sub __match {
+    my ( $self, $arg ) = @_;
+    return blessed($arg)
+      ? refaddr($arg) == refaddr($self)
+      : $arg eq $$self;
 }
 
 =head1 CAVEATS
