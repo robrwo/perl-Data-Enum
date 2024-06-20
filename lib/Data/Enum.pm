@@ -31,9 +31,9 @@ our $VERSION = 'v0.3.1';
   my $red = $color->new("red");
 
   $red->is_red;    # "1"
-  $red->is_yellow; # "" (false)
-  $red->is_blue;   # "" (false)
-  $red->is_green;  # "" (false)
+  $red->is_yellow; # "0" (false)
+  $red->is_blue;   # "0" (false)
+  $red->is_green;  # "0" (false)
 
   say $red;        # outputs "red"
 

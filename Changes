@@ -6,6 +6,8 @@ Revision history for {{ $dist->name }}:
 
   - Adjusted the wording related to the new predicate prefix option.
 
+  - Clarified that predicates return 0 for false, not an empty string.
+
   [Other]
   - Added a benchmark script for development.
 
