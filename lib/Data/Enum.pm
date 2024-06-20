@@ -145,20 +145,19 @@ This was added in v0.3.0.
 sub new {
     my $this = shift;
 
-    my $opts = ref( $_[0] ) eq "HASH" ? shift : {};
+    my $opts   = ref( $_[0] ) eq "HASH" ? shift : {};
     my $prefix = $opts->{prefix} // "is_";
 
     my @values = uniqstr( sort map { "$_" } @_ );
 
     die "has no values" unless @values;
 
-    die "values must be alphanumeric" if any{ /\W/ } @values;
+    die "values must be alphanumeric" if any { /\W/ } @values;
 
     my $key = join chr(28), @values;
 
     state %Cache;
     state $Counter = 1;
-
 
     if ( my $name = $Cache{$key} ) {
         return $name;
@@ -170,8 +169,8 @@ sub new {
 
     my $_make_symbol = sub {
         my ($value) = @_;
-        my $self = bless \$value, "${name}::${value}";
-        Internals::SvREADONLY($value, 1);
+        my $self    = bless \$value, "${name}::${value}";
+        Internals::SvREADONLY( $value, 1 );
         return $self;
     };
 
@@ -185,27 +184,30 @@ sub new {
         sub {
             my ( $class, $value ) = @_;
             state $symbols = {
-                map {
-                    $_ => $_make_symbol->($_)
-                } @values
+                map { $_ => $_make_symbol->($_) } @values
             };
             exists $symbols->{"$value"} or die "invalid value: '$value'";
             return $symbols->{"$value"};
         }
     );
 
-    $base->add_symbol( '&values', sub { return @values });
+    $base->add_symbol( '&values', sub { return @values } );
 
-    $base->add_symbol( '&predicates', sub { return map { $_make_predicate->($_) } @values } );
+    $base->add_symbol(
+        '&predicates',
+        sub {
+            return map { $_make_predicate->($_) } @values;
+        }
+    );
 
-    $base->add_symbol( '&prefix', sub { $prefix });
+    $base->add_symbol( '&prefix', sub { $prefix } );
 
     for my $value (@values) {
         my $predicate = $_make_predicate->($value);
         $base->add_symbol( '&' . $predicate, \&FALSE );
         my $elem    = "${name}::${value}";
         my $subtype = Package::Stash->new($elem);
-        $subtype->add_symbol( '@ISA',  [ __PACKAGE__, $name] );
+        $subtype->add_symbol( '@ISA',           [ __PACKAGE__, $name ] );
         $subtype->add_symbol( '&' . $predicate, \&TRUE );
     }
 
@@ -239,10 +241,9 @@ This stringifies the the object.
 =cut
 
 sub as_string {
-  my ($self) = @_;
-  return $$self;
+    my ($self) = @_;
+    return $$self;
 }
-
 
 =head1 CAVEATS
 
