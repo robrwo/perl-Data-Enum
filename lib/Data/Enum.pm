@@ -137,12 +137,7 @@ This returns the prefix.
 
 This was added in v0.3.0.
 
-=method MATCH
-
-This method adds support for L<match::simple>.
-
 =cut
-
 
 sub new {
     my $this = shift;
@@ -202,17 +197,10 @@ sub new {
 
     $base->add_symbol( '&prefix', sub { $prefix });
 
-    $base->add_symbol( '&MATCH', \&__match );
-
     $name->overload::OVERLOAD(
-        q{""} => sub { my ($self) = @_; return $$self; },
-        q{eq} => \&__match,
-        q{ne} => sub {
-            my ( $self, $arg ) = @_;
-            return blessed($arg)
-              ? refaddr($arg) != refaddr($self)
-              : $arg ne $$self;
-        },
+        q{""} => \&as_string,
+        q{eq} => \&MATCH,
+        q{ne} => \&_NOT_MATCH,
     );
 
     for my $value (@values) {
@@ -227,12 +215,37 @@ sub new {
     return $Cache{$key} = $name;
 }
 
-sub __match {
+sub _NOT_MATCH {
+    my ( $self, $arg ) = @_;
+    return blessed($arg)
+      ? refaddr($arg) != refaddr($self)
+      : $arg ne $$self;
+}
+
+=method MATCH
+
+This method adds support for L<match::simple>.
+
+=cut
+
+sub MATCH {
     my ( $self, $arg ) = @_;
     return blessed($arg)
       ? refaddr($arg) == refaddr($self)
       : $arg eq $$self;
 }
+
+=method as_string
+
+This stringifies the the object.
+
+=cut
+
+sub as_string {
+  my ($self) = @_;
+  return $$self;
+}
+
 
 =head1 CAVEATS
 

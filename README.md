@@ -135,6 +135,10 @@ This was added in v0.3.0.
 
 This method adds support for [match::simple](https://metacpan.org/pod/match%3A%3Asimple).
 
+## as\_string
+
+This stringifies the the object.
+
 # CAVEATS
 
 The overheard of creating a new class instance and resolving methods may actually take more time than comparing simple
