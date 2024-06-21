@@ -87,14 +87,38 @@ Each instance will have an `is_` method for each value.
 
 Each instance stringifies to its value.
 
-Since v0.3.0 you can change the method prefix of the predicate methods to something other than `is_`. For example,
+Since v0.3.0 you can change the specify options in the class generator:
 
 ```perl
-my $class = Data::Enum->new( { prefix => "from_" }, "home", "work" );
-my $place = $class->new("work");
-
-$place->from_home;
+my $class = Data::Enum->new( \%options, @values );
 ```
+
+The following options are supported:
+
+- prefix
+
+    Change prefix of the predicate methods to something other than `is_`. For example,
+
+    ```perl
+    my $class = Data::Enum->new( { prefix => "from_" }, "home", "work" );
+    my $place = $class->new("work");
+
+    $place->from_home;
+    ```
+
+    This was added in v0.3.0.
+
+- name
+
+    This assigns a name to the class, so instances can be constructed by name:
+
+    ```perl
+    my $class = Data::Enum->new( { name => "Colours" }, "red", "orange", "yellow", "green" );
+
+    my $color = Colours->new("yellow");
+    ```
+
+    This was added in v0.5.0.
 
 ## values
 

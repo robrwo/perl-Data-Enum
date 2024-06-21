@@ -104,12 +104,36 @@ Each instance will have an C<is_> method for each value.
 
 Each instance stringifies to its value.
 
-Since v0.3.0 you can change the method prefix of the predicate methods to something other than C<is_>. For example,
+Since v0.3.0 you can change the specify options in the class generator:
+
+  my $class = Data::Enum->new( \%options, @values );
+
+The following options are supported:
+
+=over
+
+=item prefix
+
+Change prefix of the predicate methods to something other than C<is_>. For example,
 
   my $class = Data::Enum->new( { prefix => "from_" }, "home", "work" );
   my $place = $class->new("work");
 
   $place->from_home;
+
+This was added in v0.3.0.
+
+=item name
+
+This assigns a name to the class, so instances can be constructed by name:
+
+  my $class = Data::Enum->new( { name => "Colours" }, "red", "orange", "yellow", "green" );
+
+  my $color = Colours->new("yellow");
+
+This was added in v0.5.0.
+
+=back
 
 =method values
 
@@ -163,7 +187,7 @@ sub new {
         return $name;
     }
 
-    my $name = __PACKAGE__ . "::" . $Counter++;
+    my $name = $opts->{name} || ( __PACKAGE__ . "::" . $Counter++ );
 
     my $base = Package::Stash->new($name);
 
