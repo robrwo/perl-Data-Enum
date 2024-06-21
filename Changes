@@ -1,6 +1,8 @@
 Revision history for {{ $dist->name }}:
 
 {{$NEXT}}
+
+v0.5.0    2024-06-21 21:19:12+01:00 Europe/London
   [Enhancements]
   - Add option to assign a name to a class.
 
