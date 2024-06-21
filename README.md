@@ -85,6 +85,8 @@ Calling the constructor with an invalid value will throw an exception.
 
 Each instance will have a predicate `is_` method for each value.
 
+The values are case sensitive.
+
 Each instance stringifies to its value.
 
 Since v0.3.0 you can change the specify options in the class generator:

@@ -7,7 +7,7 @@ Revision history for {{ $dist->name }}:
   [Documentation]
   - Reorganised the class constructor documentation.
 
-  - Minor clarification.
+  - Clarified about predicates and case sensitivity of values.
 
 v0.4.0    2024-06-20 13:30:56+01:00 Europe/London
   [Enhancements]
