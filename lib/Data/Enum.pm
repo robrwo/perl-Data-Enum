@@ -100,7 +100,7 @@ constructor:
 
 Calling the constructor with an invalid value will throw an exception.
 
-Each instance will have an C<is_> method for each value.
+Each instance will have a predicate C<is_> method for each value.
 
 Each instance stringifies to its value.
 
