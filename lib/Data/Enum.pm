@@ -11,7 +11,7 @@ use Scalar::Util qw/ blessed refaddr /;
 
 # RECOMMEND PREREQ: Package::Stash::XS
 
-use experimental qw/ signatures /;
+use experimental qw/ lexical_subs signatures /;
 
 use overload
   q{""} => \&as_string,
@@ -194,13 +194,13 @@ sub new ( $this, @args ) {
 
     my $base = Package::Stash->new($name);
 
-    my $_make_symbol = sub($value) {
+    my sub _make_symbol($value) {
         my $self    = bless \$value, "${name}::${value}";
         Internals::SvREADONLY( $value, 1 );
         return $self;
     };
 
-    my $_make_predicate = sub($value) {
+    my sub _make_predicate($value) {
         return $prefix . $value;
     };
 
@@ -208,7 +208,7 @@ sub new ( $this, @args ) {
         '&new',
         sub( $class, $value ) {
             state $symbols = {
-                map { $_ => $_make_symbol->($_) } @values
+                map { $_ => _make_symbol($_) } @values
             };
             exists $symbols->{"$value"} or die "invalid value: '$value'";
             return $symbols->{"$value"};
@@ -220,14 +220,14 @@ sub new ( $this, @args ) {
     $base->add_symbol(
         '&predicates',
         sub($) {
-            return map { $_make_predicate->($_) } @values;
+            return map { _make_predicate($_) } @values;
         }
     );
 
     $base->add_symbol( '&prefix', sub($) { $prefix } );
 
     for my $value (@values) {
-        my $predicate = $_make_predicate->($value);
+        my $predicate = _make_predicate($value);
         $base->add_symbol( '&' . $predicate, \&FALSE );
         my $elem    = "${name}::${value}";
         my $subtype = Package::Stash->new($elem);
