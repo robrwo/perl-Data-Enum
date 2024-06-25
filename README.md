@@ -174,7 +174,7 @@ strings.  When using this in production code, you may want to benchmark performa
 
 # SUPPORT FOR OLDER PERL VERSIONS
 
-This module requires Perl v5.14 or later.
+This module requires Perl v5.20 or later.
 
 Future releases may only support Perl versions released in the last ten years.
 

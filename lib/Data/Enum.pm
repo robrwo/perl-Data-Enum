@@ -2,7 +2,7 @@ package Data::Enum;
 
 # ABSTRACT: immutable enumeration classes
 
-use v5.14;
+use v5.20;
 use warnings;
 
 use Package::Stash;
@@ -10,6 +10,8 @@ use List::Util 1.45 qw/ any uniqstr /;
 use Scalar::Util qw/ blessed refaddr /;
 
 # RECOMMEND PREREQ: Package::Stash::XS
+
+use experimental qw/ signatures /;
 
 use overload
   q{""} => \&as_string,
@@ -168,13 +170,12 @@ This was added in v0.3.0.
 
 =cut
 
-sub new {
-    my $this = shift;
+sub new ( $this, @args ) {
 
-    my $opts   = ref( $_[0] ) eq "HASH" ? shift : {};
+    my $opts   = ref( $args[0] ) eq "HASH" ? shift @args : {};
     my $prefix = $opts->{prefix} // "is_";
 
-    my @values = uniqstr( sort map { "$_" } @_ );
+    my @values = uniqstr( sort map { "$_" } @args );
 
     die "has no values" unless @values;
 
@@ -193,22 +194,19 @@ sub new {
 
     my $base = Package::Stash->new($name);
 
-    my $_make_symbol = sub {
-        my ($value) = @_;
+    my $_make_symbol = sub($value) {
         my $self    = bless \$value, "${name}::${value}";
         Internals::SvREADONLY( $value, 1 );
         return $self;
     };
 
-    my $_make_predicate = sub {
-        my ($value) = @_;
+    my $_make_predicate = sub($value) {
         return $prefix . $value;
     };
 
     $base->add_symbol(
         '&new',
-        sub {
-            my ( $class, $value ) = @_;
+        sub( $class, $value ) {
             state $symbols = {
                 map { $_ => $_make_symbol->($_) } @values
             };
@@ -217,16 +215,16 @@ sub new {
         }
     );
 
-    $base->add_symbol( '&values', sub { return @values } );
+    $base->add_symbol( '&values', sub($) { return @values } );
 
     $base->add_symbol(
         '&predicates',
-        sub {
+        sub($) {
             return map { $_make_predicate->($_) } @values;
         }
     );
 
-    $base->add_symbol( '&prefix', sub { $prefix } );
+    $base->add_symbol( '&prefix', sub($) { $prefix } );
 
     for my $value (@values) {
         my $predicate = $_make_predicate->($value);
@@ -240,8 +238,7 @@ sub new {
     return $Cache{$key} = $name;
 }
 
-sub _NOT_MATCH {
-    my ( $self, $arg ) = @_;
+sub _NOT_MATCH( $self, $arg, @ ) {
     return blessed($arg)
       ? refaddr($arg) != refaddr($self)
       : $arg ne $$self;
@@ -253,8 +250,7 @@ This method adds support for L<match::simple>.
 
 =cut
 
-sub MATCH {
-    my ( $self, $arg ) = @_;
+sub MATCH( $self, $arg, @ ) {
     return blessed($arg)
       ? refaddr($arg) == refaddr($self)
       : $arg eq $$self;
@@ -268,8 +264,7 @@ This was added in v0.4.0.
 
 =cut
 
-sub as_string {
-    my ($self) = @_;
+sub as_string($self, @) {
     return $$self;
 }
 
@@ -280,7 +275,7 @@ strings.  When using this in production code, you may want to benchmark performa
 
 =head1 SUPPORT FOR OLDER PERL VERSIONS
 
-This module requires Perl v5.14 or later.
+This module requires Perl v5.20 or later.
 
 Future releases may only support Perl versions released in the last ten years.
 

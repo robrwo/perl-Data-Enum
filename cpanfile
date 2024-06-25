@@ -5,8 +5,9 @@ requires "List::Util" => "1.45";
 requires "Package::Stash" => "0";
 requires "Scalar::Util" => "0";
 requires "constant" => "0";
+requires "experimental" => "0";
 requires "overload" => "0";
-requires "perl" => "v5.14.0";
+requires "perl" => "v5.20.0";
 requires "warnings" => "0";
 recommends "Package::Stash::XS" => "0";
 
