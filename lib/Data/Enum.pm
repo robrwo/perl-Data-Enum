@@ -11,7 +11,7 @@ use Scalar::Util qw/ blessed refaddr /;
 
 # RECOMMEND PREREQ: Package::Stash::XS
 
-use experimental qw/ lexical_subs signatures /;
+use experimental qw/ lexical_subs postderef signatures /;
 
 use overload
   q{""} => \&as_string,
@@ -241,7 +241,7 @@ sub new ( $this, @args ) {
 sub _NOT_MATCH( $self, $arg, @ ) {
     return blessed($arg)
       ? refaddr($arg) != refaddr($self)
-      : $arg ne $$self;
+      : $arg ne $self->$*; # as_string
 }
 
 =method MATCH
@@ -253,7 +253,7 @@ This method adds support for L<match::simple>.
 sub MATCH( $self, $arg, @ ) {
     return blessed($arg)
       ? refaddr($arg) == refaddr($self)
-      : $arg eq $$self;
+      : $arg eq $self->$*; # as_string
 }
 
 =method as_string
@@ -265,7 +265,7 @@ This was added in v0.4.0.
 =cut
 
 sub as_string($self, @) {
-    return $$self;
+    return $self->$*;
 }
 
 =head1 CAVEATS
