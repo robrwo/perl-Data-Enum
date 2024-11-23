@@ -11,9 +11,14 @@ requires "perl" => "v5.20.0";
 requires "warnings" => "0";
 recommends "Package::Stash::XS" => "0";
 
+on 'build' => sub {
+  requires "ExtUtils::MakeMaker" => "7.22";
+  requires "Module::Metadata" => "1.000015";
+};
+
 on 'test' => sub {
   requires "File::Spec" => "0";
-  requires "Module::Metadata" => "0";
+  requires "Module::Metadata" => "1.000015";
   requires "Test::More" => "0";
   requires "Test::Most" => "0";
   requires "strict" => "0";
@@ -29,6 +34,7 @@ on 'configure' => sub {
 
 on 'develop' => sub {
   requires "Pod::Coverage::TrustPod" => "0";
+  requires "Test::CVE" => "0.08";
   requires "Test::DistManifest" => "0";
   requires "Test::EOF" => "0";
   requires "Test::EOL" => "0";
