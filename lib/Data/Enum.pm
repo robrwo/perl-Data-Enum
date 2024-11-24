@@ -231,7 +231,7 @@ sub new ( $this, @args ) {
         $base->add_symbol( '&' . $predicate, \&FALSE );
         my $elem    = "${name}::${value}";
         my $subtype = Package::Stash->new($elem);
-        $subtype->add_symbol( '@ISA',           [ __PACKAGE__, $name ] );
+        $subtype->add_symbol( '@ISA', [ __PACKAGE__, $name ] );
         for my $other (@values) {
             $subtype->add_symbol( '&' . _make_predicate($other), $other eq $value ? \&TRUE : \&FALSE );
         }
