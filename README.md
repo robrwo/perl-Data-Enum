@@ -176,7 +176,7 @@ strings.  When using this in production code, you may want to benchmark performa
 
 This module requires Perl v5.20 or later.
 
-Future releases may only support Perl versions released in the last ten years.
+Future releases may only support Perl versions released in the last ten (10) years.
 
 # SEE ALSO
 
