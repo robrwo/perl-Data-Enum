@@ -9,6 +9,9 @@ Revision history for {{ $dist->name }}:
   [Incompatible Changes]
   - Bumped minimum version of Perl to v5.20.
 
+  [Documentation]
+  - Added a security policy `SECURITY.md` to the distribution.
+
   [Tests]
   - Added author tests.
 
