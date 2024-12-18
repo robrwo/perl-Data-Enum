@@ -10,7 +10,7 @@ Revision history for {{ $dist->name }}:
   - Bumped minimum version of Perl to v5.20.
 
   [Tests]
-  - Added author tests for CVEs.
+  - Added author tests.
 
 v0.5.0    2024-06-21 21:19:12+01:00 Europe/London
   [Enhancements]
