@@ -1,6 +1,8 @@
 Revision history for {{ $dist->name }}:
 
 {{$NEXT}}
+
+v0.6.0    2024-12-18 14:31:30+00:00 Europe/London
   [Enhancements]
   - Add false predicate methods to subclasses to improve performance.
 

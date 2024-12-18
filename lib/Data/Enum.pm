@@ -21,7 +21,7 @@ use overload
 use constant TRUE  => 1;
 use constant FALSE => 0;
 
-our $VERSION = 'v0.6.0';
+our $VERSION = 'v0.6.1';
 
 =for Pod::Coverage TRUE
 
