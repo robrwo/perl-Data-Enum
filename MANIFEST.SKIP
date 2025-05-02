@@ -107,3 +107,5 @@ fatlib/
 ^\.mite$
 cpanfile\.snapshot$
 local/
+
+^eg/

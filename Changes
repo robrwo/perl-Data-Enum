@@ -1,6 +1,8 @@
 Revision history for {{ $dist->name }}:
 
 {{$NEXT}}
+  [Other]
+  - Removed benchmarks from the distribution, as they are meant for developers only.
 
 v0.6.0    2024-12-18 14:31:30+00:00 Europe/London
   [Enhancements]
