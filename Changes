@@ -4,6 +4,8 @@ Revision history for {{ $dist->name }}:
   [Documentation]
   - Updated the security policy.
 
+  - Added a How to Contribute document.
+
   - Updated copyright year.
 
   [Other]
