@@ -108,4 +108,4 @@ fatlib/
 cpanfile\.snapshot$
 local/
 
-^eg/
+^benchmarks/
