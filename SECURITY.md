@@ -1,8 +1,12 @@
 # Security Policy for the Data-Enum distribution.
 
-Report security issues using https://github.com/robrwo/perl-Data-Enum/security/advisories.
+Report security issues via the project
+[Security Advisories](https://github.com/robrwo/perl-Data-Enum/security/advisories).
 
 This is the Security Policy for Data-Enum.
+
+The latest version of the Security Policy can be found in the
+[git repository for Data-Enum](https://github.com/robrwo/perl-Data-Enum).
 
 This text is based on the CPAN Security Group's Guidelines for Adding
 a Security Policy to Perl Distributions (version 1.3.0)
@@ -11,7 +15,8 @@ https://security.metacpan.org/docs/guides/security-policy-for-authors.html
 # How to Report a Security Vulnerability
 
 Security vulnerabilities can be reported to the current Data-Enum
-maintainers using https://github.com/robrwo/perl-Data-Enum/security/advisories.
+maintainers via the project
+[Security Advisories](https://github.com/robrwo/perl-Data-Enum/security/advisories).
 
 Please include as many details as possible, including code samples
 or test cases, so that we can reproduce the issue.  Check that your
