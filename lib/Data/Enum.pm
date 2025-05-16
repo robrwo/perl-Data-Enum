@@ -298,7 +298,7 @@ L<Type::Tiny::Enum>
 =head2 Reporting Security Vulnerabilities
 
 Security issues should not be reported on the bugtracker website. Please see F<SECURITY.md> for instructions how to
-report security vulnerabilities
+report security vulnerabilities.
 
 =cut
 
